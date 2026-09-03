@@ -1,0 +1,977 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black: #020202;
+    --dark: #020202;
+    --gray: #000000;
+    --gray-light: #000000;
+
+    --blue: #025487;
+    --blue-light: #087abf;
+
+    --green: #00ff99;
+    --white: #ffffff;
+
+    --red: #ff3b3b;
+    --yellow: #ffd700;
+
+    --shadow: 0 10px 40px rgba(245, 236, 236, 0.5);
+}
+
+/* =========================
+   VÍDEO DE FUNDO
+========================= */
+
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    object-fit: cover;
+
+    z-index: -2;
+}
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(85, 83, 83, 0.226);
+
+    z-index: -1;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #123047 0%,
+            var(--black) 45%
+        );
+
+    color: var(--white);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =========================
+   UTILITÁRIOS
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    min-height: 100vh;
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 520px;
+
+    padding: 45px;
+
+    background: rgba(85, 83, 83, 0.226);
+
+    border: 1px solid rgba(2, 84, 135, 0.45);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 40px rgba(0, 140, 255, 0.08),
+        var(--shadow);
+
+    text-align: center;
+}
+
+
+/* LOGO */
+
+.logo {
+    margin-bottom: 10px;
+}
+
+.logo span {
+    display: block;
+
+    font-size: 60px;
+
+    margin-bottom: 5px;
+
+    animation: floating 2s infinite ease-in-out;
+}
+
+.logo h1 {
+    font-size: 38px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    color: var(--white);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.logo h2 {
+    font-size: 25px;
+
+    letter-spacing: 8px;
+
+    color: var(--blue-light);
+}
+
+.subtitle {
+    color: #aaaaaa;
+
+    margin-bottom: 30px;
+}
+
+
+/* FORM */
+
+.input-group {
+    text-align: left;
+
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cccccc;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+
+    padding: 15px 16px;
+
+    border: 1px solid #303030;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: var(--gray);
+
+    color: var(--white);
+
+    font-size: 16px;
+
+    transition: 0.2s;
+}
+
+.input-group input:focus {
+    border-color: var(--blue-light);
+
+    box-shadow:
+        0 0 0 3px rgba(2, 84, 135, 0.15);
+}
+
+.input-group input::placeholder {
+    color: #666666;
+}
+
+
+/* SENHA */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 50px;
+}
+
+.password-button {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+/* BOTÃO */
+
+.primary-button {
+    width: 100%;
+
+    padding: 16px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: var(--blue);
+
+    color: #000;
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.primary-button:hover {
+    background: var(--green);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 255, 153, 0.15);
+}
+
+.login-info {
+    margin-top: 25px;
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+.login-info strong {
+    color: var(--green);
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background: var(--gray);
+
+    border-bottom: 1px solid #292929;
+
+    box-shadow: var(--shadow);
+}
+
+.user-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-weight: bold;
+}
+
+.user-icon {
+    font-size: 24px;
+}
+
+.topbar-title {
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    color: var(--white);
+}
+
+.logout-button {
+    border: 1px solid #444;
+
+    background: transparent;
+
+    color: #ccc;
+
+    padding: 8px 16px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.logout-button:hover {
+    border-color: var(--red);
+
+    color: var(--red);
+}
+
+
+/* =========================
+   JOGO
+========================= */
+
+.game-content {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 50px 20px 80px;
+
+    text-align: center;
+}
+
+.game-title {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+.game-title span {
+    font-size: 28px;
+}
+
+.game-title h1 {
+    font-size: 38px;
+
+    letter-spacing: 2px;
+
+    font-weight: 900;
+}
+
+.game-description {
+    margin-top: 10px;
+
+    color: #888;
+}
+
+
+/* =========================
+   SLOT MACHINE
+========================= */
+
+.slot-machine {
+    position: relative;
+
+    width: min(750px, 95%);
+
+    margin: 50px auto 30px;
+
+    padding: 35px 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #222,
+            #0b0b0b
+        );
+
+    border: 4px solid var(--blue);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 30px rgba(0, 100, 180, 0.15),
+        inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.slots {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.slot {
+    height: 190px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: var(--gray);
+
+    border: 4px solid #333;
+
+    border-radius: 12px;
+
+    box-shadow:
+        inset 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.slot span {
+    font-size: clamp(60px, 9vw, 100px);
+
+    user-select: none;
+}
+
+
+/* ANIMAÇÃO */
+
+.slot.spinning span {
+    animation:
+        slotSpin 0.08s infinite linear;
+}
+
+@keyframes slotSpin {
+    0% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.game-status {
+    min-height: 32px;
+
+    margin: 20px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.status-jackpot {
+    color: var(--green);
+
+    animation: pulse 0.8s infinite alternate;
+}
+
+.status-win {
+    color: var(--blue-light);
+}
+
+.status-loss {
+    color: var(--red);
+}
+
+
+/* =========================
+   CRÉDITOS
+========================= */
+
+.credits-card {
+    display: inline-flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 15px 45px;
+
+    margin-bottom: 25px;
+
+    background: var(--gray);
+
+    border: 1px solid #333;
+
+    border-radius: 12px;
+}
+
+.credits-label {
+    color: #aaa;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+#credits {
+    color: var(--green);
+
+    font-size: 35px;
+
+    font-weight: 900;
+}
+
+
+/* =========================
+   GIRAR
+========================= */
+
+.spin-button {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 300px;
+
+    padding: 18px;
+
+    margin: auto;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--blue);
+
+    color: #000;
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.spin-button small {
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    opacity: 0.7;
+}
+
+.spin-button:hover {
+    background: var(--green);
+
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 153, 0.2);
+}
+
+.spin-button:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================
+   REGRAS
+========================= */
+
+.rules {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    max-width: 750px;
+
+    margin: 45px auto 0;
+}
+
+.rule {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px;
+
+    text-align: left;
+
+    background: rgba(26, 26, 26, 0.7);
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+}
+
+.rule span {
+    font-size: 25px;
+}
+
+.rule p {
+    color: #aaa;
+
+    font-size: 12px;
+}
+
+.rule strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--white);
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.8);
+
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 650px;
+
+    padding: 40px;
+
+    background: var(--black);
+
+    border: 1px solid var(--blue);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.close-modal {
+    position: absolute;
+
+    top: 15px;
+
+    right: 18px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 32px;
+
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--white);
+}
+
+.admin-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.admin-header span {
+    font-size: 45px;
+}
+
+.admin-header h2 {
+    margin-top: 8px;
+
+    font-size: 25px;
+}
+
+
+/* =========================
+   ESTATÍSTICAS
+========================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.stat-card {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background: var(--gray);
+
+    border: 1px solid #2a2a2a;
+
+    border-radius: 10px;
+}
+
+.stat-card span {
+    font-size: 25px;
+}
+
+.stat-card small {
+    margin-top: 8px;
+
+    color: #888;
+}
+
+.stat-card strong {
+    margin-top: 5px;
+
+    font-size: 28px;
+}
+
+.stat-card.money {
+    grid-column: 1 / -1;
+
+    border-color: rgba(0, 255, 153, 0.3);
+}
+
+.stat-card.money strong {
+    color: var(--green);
+}
+
+
+/* =========================
+   EXPORTAR
+========================= */
+
+.export-button {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: var(--blue);
+
+    color: #000;
+
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+.export-button:hover {
+    background: var(--green);
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    z-index: 200;
+
+    min-width: 250px;
+
+    padding: 15px 20px;
+
+    background: var(--gray);
+
+    border-left: 4px solid var(--green);
+
+    border-radius: 8px;
+
+    box-shadow: var(--shadow);
+
+    transform: translateX(150%);
+
+    transition: 0.3s;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes floating {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 700px) {
+
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .logo h1 {
+        font-size: 30px;
+    }
+
+    .logo h2 {
+        font-size: 20px;
+    }
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .topbar-title {
+        display: none;
+    }
+
+    .game-content {
+        padding-top: 35px;
+    }
+
+    .game-title h1 {
+        font-size: 27px;
+    }
+
+    .slot-machine {
+        padding: 20px 12px;
+    }
+
+    .slots {
+        gap: 8px;
+    }
+
+    .slot {
+        height: 120px;
+
+        border-width: 2px;
+    }
+
+    .slot span {
+        font-size: 55px;
+    }
+
+    .spin-button {
+        width: 90%;
+    }
+
+    .rules {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card.money {
+        grid-column: auto;
+    }
+
+    .modal-content {
+        padding: 30px 20px;
+    }
+}

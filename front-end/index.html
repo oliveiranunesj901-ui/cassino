@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PontoPlay Fortune</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- vídeo de fundo: autoplay + muted + loop faz ele tocar sozinho, sem precisar de JavaScript -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="video/video1.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+
+    <!-- =========================
+         TELA DE LOGIN/CADASTRO
+    ========================== -->
+
+    <main id="loginScreen" class="screen login-screen">
+
+        <div class="login-container">
+
+            <div class="logo">
+                <span>🎰</span>
+                <h1>PONTOPLAY</h1>
+                <h2>FORTUNE</h2>
+            </div>
+
+            <p class="subtitle">
+                Entre para jogar e testar sua sorte!
+            </p>
+
+            <form id="loginForm">
+
+                <div class="input-group">
+                    <label for="name">Nome</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Digite seu nome"
+                        autocomplete="name"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Telefone</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Digite seu telefone"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Digite sua senha"
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-button"
+                        >
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-button">
+                    🎲 ENTRAR
+                </button>
+
+            </form>
+
+            <p class="login-info">
+                Faça seu cadastro para começar com
+                <strong>100 créditos</strong>.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         TELA DO JOGO
+    ========================== -->
+
+    <main id="gameScreen" class="screen game-screen hidden">
+
+        <header class="topbar">
+
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span id="currentUser">Jogador</span>
+            </div>
+
+            <div class="topbar-title">
+                🎰 PONTOPLAY FORTUNE
+            </div>
+
+            <button id="logoutButton" class="logout-button">
+                Sair
+            </button>
+
+        </header>
+
+
+        <section class="game-content">
+
+            <div class="game-title">
+                <span>🎰</span>
+                <h1>SLOT MACHINE</h1>
+                <span>🎰</span>
+            </div>
+
+            <p class="game-description">
+                Boa sorte! Cada rodada custa 10 créditos.
+            </p>
+
+
+            <!-- MÁQUINA -->
+
+            <div class="slot-machine">
+
+                <div class="slot-decoration top"></div>
+
+                <div class="slots">
+
+                    <div class="slot">
+                        <span id="slot1">❔</span>
+                    </div>
+
+                    <div class="slot">
+                        <span id="slot2">❔</span>
+                    </div>
+
+                    <div class="slot">
+                        <span id="slot3">❔</span>
+                    </div>
+
+                </div>
+
+                <div class="slot-decoration bottom"></div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div id="gameStatus" class="game-status">
+                🔥 Boa sorte!
+            </div>
+
+
+            <!-- CRÉDITOS -->
+
+            <div class="credits-card">
+
+                <span class="credits-label">
+                    💰 CRÉDITOS
+                </span>
+
+                <span id="credits">
+                    100
+                </span>
+
+            </div>
+
+
+            <!-- BOTÃO GIRAR -->
+
+            <button id="spinButton" class="spin-button">
+                🎲 GIRAR
+                <small>10 créditos</small>
+            </button>
+
+
+            <!-- REGRAS -->
+
+            <div class="rules">
+
+                <div class="rule">
+                    <span>💰</span>
+                    <p>
+                        3 símbolos iguais
+                        <strong>+100 créditos</strong>
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <span>🔥</span>
+                    <p>
+                        2 símbolos iguais
+                        <strong>+30 créditos</strong>
+                    </p>
+                </div>
+
+                <div class="rule">
+                    <span>❌</span>
+                    <p>
+                        Nenhum igual
+                        <strong>Você perde 10</strong>
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         PAINEL ADMINISTRADOR
+    ========================== -->
+
+    <div id="adminModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <button id="closeAdmin" class="close-modal">
+                ×
+            </button>
+
+            <div class="admin-header">
+                <span>👑</span>
+                <h2>PAINEL ADMINISTRADOR</h2>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>👥</span>
+                    <small>Usuários</small>
+                    <strong id="totalUsers">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>📈</span>
+                    <small>Acessos</small>
+                    <strong id="totalAccess">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>🎲</span>
+                    <small>Partidas</small>
+                    <strong id="totalGames">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>🏆</span>
+                    <small>Jackpots</small>
+                    <strong id="totalJackpots">0</strong>
+                </div>
+
+                <div class="stat-card money">
+                    <span>💸</span>
+                    <small>Arrecadado</small>
+                    <strong id="totalMoney">0</strong>
+                </div>
+
+            </div>
+
+            <button id="exportUsers" class="export-button">
+                📁 EXPORTAR USUÁRIOS
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         NOTIFICAÇÃO
+    ========================== -->
+
+    <div id="toast" class="toast"></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
